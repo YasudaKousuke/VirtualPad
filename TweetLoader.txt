@@ -1,0 +1,41 @@
+﻿Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    If Target.Column = 9 And Target.Row > 2 And Target.Row <= Cells(3, 2).End(xlDown).Row Then
+    
+        If Target.Value = "借りる" Then
+        
+            Dim WshNetworkObject As Object
+            
+            Set WshNetworkObject = CreateObject("WScript.Network")
+            
+            Dim name As String
+            Dim id As String
+            name = "未登録"
+            id = WshNetworkObject.UserName
+            
+            Select Case id
+                Case "luca149"
+                    name = "るか"
+            End Select
+            
+            Cells(Target.Row, 4).Value = "貸出中"
+            Cells(Target.Row, 5).Value = name
+            Cells(Target.Row, 6).Value = id
+            Cells(Target.Row, 7).Value = Date
+            Cells(Target.Row, 8).Value = DateAdd("d", 7, Date)
+            Cells(Target.Row, 9).Value = "返却"
+            
+        Else
+            
+            Range(Cells(Target.Row, 4), Cells(Target.Row, 8)).Value = ""
+            Cells(Target.Row, 9).Value = "借りる"
+            
+        End If
+        
+    ElseIf Target.Value = "新規登録" Then
+        Range(Cells(Target.Row, 2), Cells(Target.Row, 8)).BorderAround Weight:=xlMedium
+        
+    Else
+    End If
+    
+End Sub
