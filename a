@@ -1,0 +1,7 @@
+function myfunc() {
+	var elem = document.getElementById("num");
+	var num = document.getElementById("num").value;
+    var y = event.target.parentNode.parentNode.rowIndex;
+    var table = document.getElementById("table");
+    table.rows[y].cells[2].innerHTML = table.rows[y].cells[0].firstChild.data * table.rows[y].cells[1].firstChild.value;
+}
